@@ -1,0 +1,92 @@
+.container{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    background-color: grey;
+}
+
+.headerDiv{
+    height: 7vh;
+    width: 100vw;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2vh;
+   
+}
+
+.mainDiv{
+    height: 93vh;
+    width: 100vw;
+    background-color: grey;
+    display: flex;
+}
+.dashboardDiv{
+    width: 20vw;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 8px;
+    margin: 1vh;
+    display: flex;
+    flex-direction: column;
+}
+.contentDiv{
+    width: 80vw;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 8px;
+    margin: 1vh;
+    padding: 2vh;
+    position: relative;
+    overflow: scroll;
+}
+.popupDiv {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    z-index: 9999; 
+    width: 70vw;
+    height: 70vh;
+    overflow: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+
+
+.custDiv{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+.btn{
+    height: 5vh;
+    border: 1px solid #721072;
+    border-radius: 8px;
+    background: #721072;
+    color: white;
+}
+.selectfields{
+    display: flex;
+    justify-content: center;
+    gap: 5vw;
+}
+.selectdd{
+    height: 4vh;
+    width: 15vw;
+    border: 1px solid grey;
+    border-radius: 6px;
+}
+
+.error{
+    color: red;
+}

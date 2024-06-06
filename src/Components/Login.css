@@ -1,0 +1,45 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: plum;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
+    border-radius: 10px;
+    align-items: center;
+    height: 60vh;
+    width: 50vh;
+}
+
+.fields{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 4vh;
+}
+.forgetpass{
+    color: purple;
+    font-size: small;
+    display: flex;
+    justify-content: flex-end;
+}
+.loginbtn{
+    border: 1px solid purple;
+    border-radius: 19px;
+    background: purple;
+    color: white;
+    height: 5vh;
+}
+
+.error {
+    color: red;
+    margin-top: 1rem;
+}
+

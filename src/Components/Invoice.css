@@ -1,0 +1,46 @@
+
+.invoiceContainer{
+    background-color: black;
+    /* height: 100vh; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.invoiceContent{
+    background-color: white;
+    width: 210mm; /* A4 width */
+    height: fit-content; /* A4 height */
+    padding: 25px;
+    overflow: auto;
+}
+
+.invoiceDiv{
+    display: flex;
+    justify-content: space-between;
+}
+.title{
+    text-align: center;
+    padding: 10px;
+}
+.addressDiv{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.invoiceTable {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.invoiceTable th,
+.invoiceTable td {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.invoiceTable tbody tr:nth-child(odd) {
+    background-color: rgb(191, 191, 191);
+}

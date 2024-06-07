@@ -8,6 +8,7 @@ import "../Components/Payment.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from 'yup';
 import view from "../Components/images/viewicon.png";
+import { InputText } from "primereact/inputtext";
 
 function Payments() {
     const [data, setData] = useState([]);
@@ -237,9 +238,14 @@ function Payments() {
                         <h2>Order Details</h2>
                         Total Amount : {currRow.total}
                         {currRow.partialPayment && currRow.partialPayment.length ? (
-                            currRow.partialPayment.map((item, ind) => (
-                                <h5 key={ind}>Amount {item.amountPaid} - Bank {item.bankName} - Date {item.paidDate}</h5>
-                            ))
+                            <DataTable value={currRow.partialPayment} dataKey="invoiceNo" showGridlines>
+                            <Column field="amountPaid" header="Amount" style={{ minWidth: '20%' }} />
+                            <Column field="bankName" header="Bank" style={{ minWidth: '20%' }} />
+                            <Column field="paidDate" header="Paid date" style={{ minWidth: '20%' }} />
+                        </DataTable>
+                            // currRow.partialPayment.map((item, ind) => (
+                            //     <h5 key={ind}>Amount {item.amountPaid} - Bank {item.bankName} - Date {item.paidDate}</h5>
+                            // ))
                         ) : (
                             <h5>No previous payments</h5>
                         )}
@@ -256,24 +262,26 @@ function Payments() {
                             onSubmit={handleFormSubmit}
                         >
                         {({ values, setFieldValue }) => (
-                            <Form>
-                  
-                                    <div>
+                            <Form className="form">
+                                    <div className="inpDiv">
                                         <label htmlFor="amountPaid">Amount Paid</label>
-                                        <Field name="amountPaid" type='number' />
+                                        <Field name="amountPaid"  as={InputText} type='number' />
                                         <ErrorMessage name="amountPaid" component="div" />
                                     </div>
-                                <div>
+                                <div className="inpDiv">
                                     <label htmlFor="bank">Bank Name</label>
-                                    <Field name="bank" type='text' />
+                                    <Field name="bank"  as={InputText} type='text' />
                                     <ErrorMessage name="bank" component="div" />
                                 </div>
-                                <div>
+                                <div className="inpDiv">
                                     <label htmlFor="datepaid">Date</label>
-                                    <Field name="datepaid" type='date' />
+                                    <Field name="datepaid"  as={InputText} type='date' />
                                     <ErrorMessage name="datepaid" component="div" />
                                 </div>
-                                <button type="submit" className="btn">Submit</button>
+                                <div style={{display:'flex',justifyContent:'center',marginTop:'15px'}}>
+                                    <button type="submit" className="btn">Submit</button>
+                                </div>
+                                
                             </Form>
                         )}
                         </Formik>
@@ -286,20 +294,30 @@ function Payments() {
                     <div className="popup">
                         <div onClick={() => setViewPopup(false)}>X</div>
                         <h2>Order Details</h2>
-                        Total Amount : {currRow.total}
+                        <h3>Total Amount : {currRow.total}</h3>
+                        <h3>Paid :  {currRow.partialPayment?.reduce((acc, payment) => acc + payment.amountPaid, 0)}</h3>
+                        <h3>Remaining : {currRow.total - currRow.partialPayment?.reduce((acc, payment) => acc + payment.amountPaid, 0)}</h3>
+
                         {currRow.fullPayment ? (
                             <h5>Full Amount {currRow.total} - Bank {currRow.fullPayment.bankName} - Date {currRow.fullPayment.paidDate}</h5>
                         ) : (
                             <>
                                 {currRow.partialPayment && currRow.partialPayment.length ? (
-                                    currRow.partialPayment.map((item, ind) => (
-                                        <h5 key={ind}>Amount {item.amountPaid} - Bank {item.bankName} - Date {item.paidDate}</h5>
-                                    ))
+                                    <DataTable value={currRow.partialPayment}>
+                                        <Column field="amountPaid" header="Amount"></Column>
+                                        <Column field="bankName" header="Bank"></Column>
+                                        <Column field="paidDate" header="Paid date"></Column>
+                                    </DataTable>
+                                    // currRow.partialPayment.map((item, ind) => (
+                                    //     <h5 key={ind}>Amount {item.amountPaid} - Bank {item.bankName} - Date {item.paidDate}</h5>
+                                    // ))
                                 ) : (
-                                    <h5>No previous payments</h5>
+                                    <h2 style={{display:'flex',justifyContent:'center'}}>No previous payments</h2>
                                 )}
                                 {currRow.partialPayment && currRow.partialPayment.reduce((acc, payment) => acc + payment.amountPaid, 0) < currRow.total && 
-                                <button onClick={() => setShowAddForm(true)}>Add</button>
+                                <div style={{display:'flex',justifyContent:'center',marginTop:'10px'}}>
+                                    <button onClick={() => setShowAddForm(true)} className="btn">Add</button>
+                                </div>
                                 }
                                 {showAddForm &&
                                     <Formik
@@ -308,23 +326,25 @@ function Payments() {
                                         onSubmit={handleFormSubmit}
                                     >
                                         {({ values, setFieldValue }) => (
-                                            <Form>
-                                                <div>
+                                            <Form className="form">
+                                                <div className="inpDiv">
                                                     <label htmlFor="amountPaid">Amount Paid</label>
-                                                    <Field name="amountPaid" type='number' />
+                                                    <Field name="amountPaid" as={InputText} type='number' />
                                                     <ErrorMessage name="amountPaid" component="div" />
                                                 </div>
-                                                <div>
+                                                <div className="inpDiv">
                                                     <label htmlFor="bank">Bank Name</label>
-                                                    <Field name="bank" type='text' />
+                                                    <Field name="bank" as={InputText} type='text' />
                                                     <ErrorMessage name="bank" component="div" />
                                                 </div>
-                                                <div>
+                                                <div className="inpDiv">
                                                     <label htmlFor="datepaid">Date</label>
-                                                    <Field name="datepaid" type='date' />
+                                                    <Field name="datepaid" as={InputText} type='date' />
                                                     <ErrorMessage name="datepaid" component="div" />
                                                 </div>
-                                                <button type="submit" className="btn">Submit</button>
+                                                <div style={{display:'flex',justifyContent:'center',marginTop:'15px'}}>
+                                                    <button type="submit" className="btn">Submit</button>
+                                                </div>
                                             </Form>
                                         )}
                                     </Formik>

@@ -15,10 +15,10 @@ function Content() {
             </div>
             <div className="mainDiv">
                 <div className="dashboardDiv">
-                    <div style={{ marginTop: '3vh', padding: '3vh' }}><span style={{ cursor: 'pointer' }} onClick={() => setContent('Dashboard')}>Dashboard</span></div>
-                    <div style={{ marginTop: '3vh', padding: '3vh' }}><span style={{ cursor: 'pointer' }} onClick={() => setContent('Billing')}>Billing</span></div>
-                    <div style={{ marginTop: '3vh', padding: '3vh' }}><span style={{ cursor: 'pointer' }} onClick={() => setContent('Payment')}>Payments</span></div>
-                    <div style={{ marginTop: '3vh', padding: '3vh' }}><span style={{ cursor: 'pointer' }} onClick={() => setContent('Customers')}>Customers</span></div>
+                    <div style={{ marginTop: '3vh', padding: '3vh' }}><span style={{ cursor: 'pointer' }} onClick={() => setContent('Dashboard')}><div className={content==='Dashboard'?'active':''}>Dashboard</div></span></div>
+                    <div style={{ marginTop: '3vh', padding: '3vh' }}><span style={{ cursor: 'pointer' }} onClick={() => setContent('Billing')}><div className={content==='Billing'?'active':''}>Billing</div></span></div>
+                    <div style={{ marginTop: '3vh', padding: '3vh' }}><span style={{ cursor: 'pointer' }} onClick={() => setContent('Payment')}><div className={content==='Payment'?'active':''}>Payments</div></span></div>
+                    <div style={{ marginTop: '3vh', padding: '3vh' }}><span style={{ cursor: 'pointer' }} onClick={() => setContent('Customers')}><div className={content==='Customers'?'active':''}>Customers</div></span></div>
                 </div>
                 <div className="contentDiv">
                     {content === 'Dashboard' ? (

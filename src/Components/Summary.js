@@ -6,7 +6,8 @@ const Summary = ({label,value,color}) => {
   return (
     <div style={{display:'flex',flexDirection:'row'}}>
         <div>
-        <Card title={label} style={{width:'15vw',backgroundColor:color }}>
+        <Card style={{width:'15vw',backgroundColor:color }}>
+            <h4>{label}</h4>
             <p>{value}</p>
         </Card>
         </div>

@@ -1,0 +1,10 @@
+/* .mainDiv{
+    display: flex;
+    flex-direction: column;
+} */
+.subDiv{
+    display: flex;
+    flex-direction: row;
+    margin-top: 4vh;
+    justify-content: space-between;
+}

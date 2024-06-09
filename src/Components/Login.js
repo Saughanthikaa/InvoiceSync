@@ -14,7 +14,8 @@ function Login() {
         try {
             const response = await axios.post('http://localhost:8000/login', { username, password }); // Ensure this URL matches your backend's URL
             if (response.status === 200) {
-                localStorage.setItem('token', response.data.token); // Store the JWT token
+                localStorage.setItem('token', response.data.token); 
+                localStorage.setItem('username',username)
                 window.location.href = '/Content';
             }
         } catch (error) {

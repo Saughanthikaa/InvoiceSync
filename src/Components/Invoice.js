@@ -60,9 +60,13 @@ function Invoice() {
     
     
     return (
+        
         <div className="invoiceContainer">
+             <div style={{width:'210mm',background:'white'}}>
+                <button onClick={downloadInvoiceAsPdf}>Download as PDF</button>
+            </div>
             <div className="invoiceContent" ref={invoiceContentRef}>
-            <button onClick={downloadInvoiceAsPdf}>Download as PDF</button>
+           
                 <div className="title">
                     <span>SHRI MARIAMMAN TEXTILES</span>
                 </div>

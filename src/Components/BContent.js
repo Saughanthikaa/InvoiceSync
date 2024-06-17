@@ -401,29 +401,10 @@ function BContent(){
                             <div>
                                 <Dropdown value={selectedProduct} onChange={handleChange} options={products} optionLabel="name" 
                                     placeholder="Select a Product" className="w-full md:w-14rem" style={{width:'200px'}}/>
-
-                                {/* <select id="product" value={selectedProduct} onChange={handleChange} className="selectdd">
-                                    <option value="">Select a product</option>
-                                    {products.map((product, index) => (
-                                        <option key={index} value={product.name}>
-                                            {product.name}
-                                        </option>
-                                    ))}
-                                </select> */}
                             </div>
                             {selectedProduct && (
                                 <div>
                                 <InputNumber value={quantity} onValueChange={(e) => setQuantity(parseInt(e.target.value))} mode="decimal" showButtons min={0} />
-                                {/* <InputNumber value={value3} onValueChange={(e) => setQuantity(parseInt(e.target.value))} mode="decimal" showButtons min={0} max={100} /> */}
-                                    {/* <input
-                                        type="number"
-                                        id="quantity"
-                                        value={quantity}
-                                        onChange={(e) => setQuantity(parseInt(e.target.value))}
-                                        min="1"
-                                        className="selectdd"
-                                        style={{ width: '4vw' }}
-                                    /> */}
                                 </div>
                             )}
                             <button onClick={handleAddProduct}>Add</button>
@@ -436,13 +417,7 @@ function BContent(){
                                 <Column field="quantity" header="Quantity"></Column>
                                 <Column field="subtotal" header="Subtotal"></Column>
                             </DataTable>
-                            {/* <ul>
-                                {selectedProductsList.map((product, index) => (
-                                    <li key={index}>
-                                        {product.name} - Price: {product.price} - Quantity: {product.quantity} - Subtotal: {product.subtotal}
-                                    </li>
-                                ))}
-                            </ul> */}
+
                         </div>
                         <div style={{display:'flex',justifyContent:'center',marginTop:'30px'}}>
                             <button onClick={handleSubmit} className="btn">Submit</button>
@@ -451,142 +426,6 @@ function BContent(){
                 )}
             </div>
          </Dialog>
-    {/* {showpopup && (
-        
-        <>
-            <div className="overlay"></div>
-            <div className="popupDiv">
-                <div style={{ textAlign: 'end', cursor: 'pointer' }} onClick={() => handleOrderClick()}>X</div>
-                {prodselection ? (
-                    <div className="custDiv">
-                        <h2>Add Customer</h2>
-                       
-                        <Formik
-                            initialValues={customer}
-                            validationSchema={validationSchema}
-                            onSubmit={(values, { setSubmitting }) => {
-                                setCustomer(values);
-                                selectProd();
-                                setSubmitting(false);
-                            }}
-                        >
-                            {({ isSubmitting }) => (
-                                <Form>
-                                    <div style={{ display: 'flex', gap: '10vh', marginBottom: '4vh' }}>
-                                        <div>
-                                            <label htmlFor="fname">First Name</label><br />
-                                            <Field name="fname" as={InputText} id="fname" style={{ width: '300px' }} />
-                                            <ErrorMessage name="fname" component="div" className="error" />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="lname">Last Name</label><br />
-                                            <Field name="lname" as={InputText} id="lname" style={{ width: '300px' }} />
-                                            <ErrorMessage name="lname" component="div" className="error" />
-                                        </div>
-                                    </div>
-                                    <div style={{ display: 'flex', gap: '10vh', marginBottom: '4vh' }}>
-                                        <div>
-                                            <label htmlFor="address">Address</label><br />
-                                            <Field name="address" as={InputText} id="address" style={{ width: '300px' }} />
-                                            <ErrorMessage name="address" component="div" className="error" />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="city">City</label><br />
-                                            <Field name="city" as={InputText} id="city" style={{ width: '300px' }} />
-                                            <ErrorMessage name="city" component="div" className="error" />
-                                        </div>
-                                    </div>
-                                    <div style={{ display: 'flex', gap: '10vh', marginBottom: '4vh' }}>
-                                        <div>
-                                            <label htmlFor="state">State</label><br />
-                                            <Field name="state" as={InputText} id="state" style={{ width: '300px' }} />
-                                            <ErrorMessage name="state" component="div" className="error" />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="pincode">Pincode</label><br />
-                                            <Field name="pincode" as={InputText} id="pincode" style={{ width: '300px' }} />
-                                            <ErrorMessage name="pincode" component="div" className="error" />
-                                        </div>
-                                    </div>
-                                    <div style={{ display: 'flex', gap: '10vh', marginBottom: '4vh' }}>
-                                        <div>
-                                            <label htmlFor="phone">Phone</label><br />
-                                            <Field name="phone" as={InputText} id="phone" style={{ width: '300px' }} />
-                                            <ErrorMessage name="phone" component="div" className="error" />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="email">Email</label><br />
-                                            <Field name="email" as={InputText} id="email" style={{ width: '300px' }} />
-                                            <ErrorMessage name="email" component="div" className="error" />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <button type="submit" className="btn" disabled={isSubmitting}>Select product</button>
-                                    </div>
-                                    
-                                </Form>
-                                
-                            )}
-                        </Formik>
-                        <Dropdown
-                                value={selectedProduct}
-                                onChange={(e) => setSelectedProduct(e.value)}
-                                options={products}
-                                placeholder="Select a product"
-                                className="w-full md:w-14rem"
-                            />
-                    </div>
-                ) : (
-                    <div>
-                        <div className="selectfields">
-                            <div>
-                            <Dropdown
-                                value={selectedProduct}
-                                onChange={(e) => setSelectedProduct(e.value)}
-                                options={products}
-                                placeholder="Select a product"
-                                className="w-full md:w-14rem"
-                            />
-                                <select id="product" value={selectedProduct} onChange={handleChange} className="selectdd">
-                                    <option value="">Select a product</option>
-                                    {products.map((product, index) => (
-                                        <option key={index} value={product.name}>
-                                            {product.name}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                            {selectedProduct && (
-                                <div>
-                                    <input
-                                        type="number"
-                                        id="quantity"
-                                        value={quantity}
-                                        onChange={(e) => setQuantity(parseInt(e.target.value))}
-                                        min="1"
-                                        className="selectdd"
-                                        style={{ width: '4vw' }}
-                                    />
-                                </div>
-                            )}
-                            <button onClick={handleAddProduct}>Add</button>
-                        </div>
-                        <div>
-                            <h2>Selected Products:</h2>
-                            <ul>
-                                {selectedProductsList.map((product, index) => (
-                                    <li key={index}>
-                                        {product.name} - Price: {product.price} - Quantity: {product.quantity} - Subtotal: {product.subtotal}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                        <button onClick={handleSubmit} className="btn">Submit</button>
-                    </div>
-                )}
-            </div>
-        </>
-    )} */}
     </div>
     )
 }

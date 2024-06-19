@@ -22,7 +22,7 @@ function Invoice() {
         console.log("state differs")
         tax=0.02+0.02
     }
-    const totalAmount = totalAmt * (1+tax)
+    const totalAmount = (totalAmt * (1+tax)).toFixed(2)
     console.log("TOTAL AMT  = ",totalAmount ,totalAmt , tax)
 
     const downloadInvoiceAsPdf = () => {

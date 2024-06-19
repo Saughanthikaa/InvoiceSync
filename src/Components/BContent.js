@@ -15,7 +15,8 @@ import * as Yup from 'yup';
 import { Tag } from 'primereact/tag';
 import { InputNumber } from 'primereact/inputnumber';
 import { Dialog } from 'primereact/dialog';
-        
+import { AutoComplete } from 'primereact/autocomplete';
+
 
 
 const validationSchema = Yup.object({
@@ -52,15 +53,13 @@ const api = axios.create({
 
 function BContent(){
 
-    const [selectedCity, setSelectedCity] = useState(null);
-    const cities = [
-        { name: 'New York', code: 'NY' },
-        { name: 'Rome', code: 'RM' },
-        { name: 'London', code: 'LDN' },
-        { name: 'Istanbul', code: 'IST' },
-        { name: 'Paris', code: 'PRS' }
-    ];
-
+    // const customerData = [
+    //     { fname: "John", lname: "Doe", city: "New York", state: "NY", pincode: "10001" },
+    //     { fname: "Jane", lname: "Smith", city: "Los Angeles", state: "CA", pincode: "90001" },
+    //     // Add more customer data as needed
+    //   ];
+    
+      
     const [showpopup, setShowpopup] = useState(false);
     const [prodselection, setProdselection] = useState(true);
     const [expandedRows, setExpandedRows] = useState(null);
@@ -75,6 +74,28 @@ function BContent(){
         email: '',
         product: []
     });
+
+    const [filteredCustomers, setFilteredCustomers] = useState([]);
+        const handleSelect = (e, setFieldValue) => {
+        const selectedCustomer = e.value;
+        setFieldValue('fname', selectedCustomer.fname);
+        setFieldValue('lname', selectedCustomer.lname);
+        setFieldValue('address',selectedCustomer.address);
+        setFieldValue('phone',selectedCustomer.phone);
+        setFieldValue('email',selectedCustomer.email);
+        setFieldValue('city', selectedCustomer.city);
+        setFieldValue('state', selectedCustomer.state);
+        setFieldValue('pincode', selectedCustomer.pincode);
+      };
+    
+      const searchCustomer = (event) => {
+        setFilteredCustomers(
+          customerData.filter((customer) => {
+            return customer.fname.toLowerCase().startsWith(event.query.toLowerCase());
+          })
+        );
+      };
+
     const [selectedProduct, setSelectedProduct] = useState("");
     const [price, setPrice] = useState();
     const [quantity, setQuantity] = useState(1);
@@ -124,6 +145,7 @@ function BContent(){
     const handleChange = (e) => {
         setSelectedProduct(e.target.value);
     };
+    const [customerData, setCustomerData] = useState([]);
 
     useEffect(() => {
         const fetchOrders = async () => {
@@ -136,11 +158,37 @@ function BContent(){
             }
         };
         fetchOrders();
+
         const product = products.find((p) => p.name === selectedProduct);
         if (product) {
             setPrice(quantity * product.pp);
         }
     }, [selectedProduct, quantity]);
+    useEffect(() => {
+        if (data.length > 0) {
+            const seen = new Set();
+            const uniqueCustomerData = data.filter(order => {
+                const identifier = `${order.fname}|${order.lname}|${order.city}|${order.state}|${order.pincode}|${order.address}|${order.phone}|${order.email}`;
+                if (seen.has(identifier)) {
+                    return false;
+                }
+                seen.add(identifier);
+                return true;
+            }).map(order => ({
+                fname: order.fname,
+                lname: order.lname,
+                city: order.city,
+                state: order.state,
+                pincode: order.pincode,
+                address: order.address,
+                phone: order.phone,
+                email: order.email
+            }));
+
+            setCustomerData(uniqueCustomerData);
+            console.log("after setting cutomer array = ",customerData)
+        }
+    }, [data]);
 
     const getDetails=async()=>{
         try {
@@ -172,7 +220,7 @@ function BContent(){
             else{
                 tax= 0.05
             }
-            const total = totalamt * (1+tax)
+            const total = (totalamt * (1+tax)).toFixed(2)
             const obj = {
                 ...customer,
                 invoiceNo: newInvoiceNo.toString(),
@@ -327,7 +375,7 @@ function BContent(){
                     <div className="custDiv">
                         <h2>Add Customer</h2>
                        
-                        <Formik
+                        {/* <Formik
                             initialValues={customer}
                             validationSchema={validationSchema}
                             onSubmit={(values, { setSubmitting }) => {
@@ -393,7 +441,103 @@ function BContent(){
                                 </Form>
                                 
                             )}
-                        </Formik>
+                        </Formik> */}
+                       <Formik
+      initialValues={customer}
+      validationSchema={validationSchema}
+      onSubmit={(values, { setSubmitting }) => {
+        setCustomer(values);
+        // selectProd(); // Uncomment this if you have a function to select product
+        selectProd();
+        setSubmitting(false);
+      }}
+    >
+      {({ isSubmitting, setFieldValue }) => (
+        <Form>
+          <div style={{ display: 'flex', gap: '10vh', marginBottom: '4vh' }}>
+            <div>
+              <label htmlFor="fname">First Name</label><br />
+              <Field name="fname">
+                {({ field }) => (
+                  <AutoComplete
+                    id="fname"
+                    {...field}
+                    value={field.value}
+                    suggestions={filteredCustomers}
+                    completeMethod={searchCustomer}
+                    field="fname"
+                    dropdown
+                    onChange={(e) => setFieldValue('fname', e.value)}
+                    onSelect={(e) => handleSelect(e, setFieldValue)}
+                    style={{ width: '300px' }}
+                  />
+                )}
+              </Field>
+              <ErrorMessage name="fname" component="div" className="error" />
+            </div>
+            <div>
+              <label htmlFor="lname">Last Name</label><br />
+              <Field name="lname">
+                {({ field }) => (
+                  <AutoComplete
+                    id="lname"
+                    {...field}
+                    value={field.value}
+                    suggestions={filteredCustomers}
+                    completeMethod={searchCustomer}
+                    field="lname"
+                    dropdown
+                    onChange={(e) => setFieldValue('lname', e.value)}
+                    onSelect={(e) => handleSelect(e, setFieldValue)}
+                    style={{ width: '300px' }}
+                  />
+                )}
+              </Field>
+              <ErrorMessage name="lname" component="div" className="error" />
+            </div>
+          </div>
+          <div style={{ display: 'flex', gap: '10vh', marginBottom: '4vh' }}>
+            <div>
+              <label htmlFor="address">Address</label><br />
+              <Field name="address" as={InputText} id="address" style={{ width: '300px' }} />
+              <ErrorMessage name="address" component="div" className="error" />
+            </div>
+            <div>
+              <label htmlFor="city">City</label><br />
+              <Field name="city" as={InputText} id="city" style={{ width: '300px' }} />
+              <ErrorMessage name="city" component="div" className="error" />
+            </div>
+          </div>
+          <div style={{ display: 'flex', gap: '10vh', marginBottom: '4vh' }}>
+            <div>
+              <label htmlFor="state">State</label><br />
+              <Field name="state" as={InputText} id="state" style={{ width: '300px' }} />
+              <ErrorMessage name="state" component="div" className="error" />
+            </div>
+            <div>
+              <label htmlFor="pincode">Pincode</label><br />
+              <Field name="pincode" as={InputText} id="pincode" style={{ width: '300px' }} />
+              <ErrorMessage name="pincode" component="div" className="error" />
+            </div>
+          </div>
+          <div style={{ display: 'flex', gap: '10vh', marginBottom: '4vh' }}>
+            <div>
+              <label htmlFor="phone">Phone</label><br />
+              <Field name="phone" as={InputText} id="phone" style={{ width: '300px' }} />
+              <ErrorMessage name="phone" component="div" className="error" />
+            </div>
+            <div>
+              <label htmlFor="email">Email</label><br />
+              <Field name="email" as={InputText} id="email" style={{ width: '300px' }} />
+              <ErrorMessage name="email" component="div" className="error" />
+            </div>
+          </div>
+          <div>
+            <button type="submit" className="btn" disabled={isSubmitting}>Select product</button>
+          </div>
+        </Form>
+      )}
+    </Formik>
                     </div>
                 ) : (
                     <div>

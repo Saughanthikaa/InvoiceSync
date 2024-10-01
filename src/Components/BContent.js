@@ -358,14 +358,14 @@ function BContent(){
         <div>
         <button onClick={() => handleOrderClick()} className="btn"> Add order</button>
         <DataTable value={data} paginator rows={10} rowsPerPageOptions={[5, 10, 25, 50]} expandedRows={expandedRows} onRowToggle={(e) => setExpandedRows(e.data)} rowExpansionTemplate={rowExpansionTemplate} dataKey="invoiceNo" showGridlines>
-            <Column expander style={{ width: '3em' }} />
-            <Column field="invoiceNo" header="Invoice No" style={{ minWidth: '20%' }} />
-            <Column field="fname" header="First Name" style={{ minWidth: '20%' }} />
-            <Column field="lname" header="Last Name" style={{ minWidth: '20%' }} />
-            <Column field={(rowData) => formatDate(rowData.orderedDate)} header="Ordered Date" style={{ minWidth: '30%' }} />
-            <Column field="total" header="Total" style={{ minWidth: '25%' }} />
-            <Column field="status" header="Status" editor={statusEditor} body={(rowData) => <Tag value={rowData.status} severity={getSeverity(rowData.status)}></Tag>} />
-            <Column header="Bill" body={billTemplate} style={{ minWidth: '25%' }} />
+            <Column expander style={{ width: '3em' }} headerStyle={{ backgroundColor: 'transparent' }}/>
+            <Column field="invoiceNo" header="Invoice No" style={{ minWidth: '20%' }} headerStyle={{ backgroundColor: 'transparent' }}/>
+            <Column field="fname" header="First Name" style={{ minWidth: '20%' }} headerStyle={{ backgroundColor: 'transparent' }}/>
+            <Column field="lname" header="Last Name" style={{ minWidth: '20%' }} headerStyle={{ backgroundColor: 'transparent' }}/>
+            <Column field={(rowData) => formatDate(rowData.orderedDate)} header="Ordered Date" style={{ minWidth: '30%' }} headerStyle={{ backgroundColor: 'transparent' }}/>
+            <Column field="total" header="Total" style={{ minWidth: '25%' }} headerStyle={{ backgroundColor: 'transparent' }} />
+            <Column field="status" header="Status" editor={statusEditor} headerStyle={{ backgroundColor: 'transparent' }} body={(rowData) => <Tag value={rowData.status} severity={getSeverity(rowData.status)} ></Tag>} />
+            <Column header="Bill" body={billTemplate} style={{ minWidth: '25%' }} headerStyle={{ backgroundColor: 'transparent' }}/>
         </DataTable>
     </div>
         <Dialog header="Header" visible={showpopup} style={{ width: '50vw' }} onHide={() => {if (!showpopup) return; setShowpopup(false); }}>
@@ -532,7 +532,7 @@ function BContent(){
               <ErrorMessage name="email" component="div" className="error" />
             </div>
           </div>
-          <div>
+          <div style={{display:"flex",justifyContent:"center"}}>
             <button type="submit" className="btn" disabled={isSubmitting}>Select product</button>
           </div>
         </Form>

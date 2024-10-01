@@ -67,7 +67,7 @@ function Dashboard() {
 
     return (
         <div>
-            <div style={{ display: 'flex', flexDirection: 'row' ,gap:'30px'}}>
+            <div style={{ display: 'flex', flexDirection: 'row' , justifyContent:'space-evenly',marginTop:'60px'}}>
                 {totalOrders !== null && (
                     <Summary label="Total Orders" value={totalOrders} color="white" />
                 )}
@@ -75,25 +75,25 @@ function Dashboard() {
                     <Summary label="Pending Orders" value={pendingOrders} color="white" />
                 )}
                 {totalOrders !== null && (
-                    <Summary label="In-progress Orders" value={inprogressOrders} color="white" />
+                    <Summary label="In-progress" value={inprogressOrders} color="white" />
                 )}
                 {pendingOrders !== null && (
-                    <Summary label="Completed Orders" value={completedOrders} color="white" />
+                    <Summary label="Completed " value={completedOrders} color="white" />
                 )}
             </div>
             <div className="subDiv">
                 <div style={{width:'50%',padding:'10px'}}>
                 <h4>Recent Orders</h4>
                 <DataTable value={recentOrders}>
-                        <Column field="invoiceNo" header="InvoiceNo"></Column>
-                        <Column field="fname" header="Name"></Column>
-                        <Column field={(rowData) => formatDate(rowData.orderedDate)} header="Ordered Date"></Column>
-                        <Column field="total" header="Total"></Column>
+                        <Column field="invoiceNo" header="InvoiceNo" headerStyle={{ backgroundColor: 'transparent' }}></Column>
+                        <Column field="fname" header="Name" headerStyle={{ backgroundColor: 'transparent' }}></Column>
+                        <Column field={(rowData) => formatDate(rowData.orderedDate)} header="Ordered Date" headerStyle={{ backgroundColor: 'transparent' }}></Column>
+                        <Column field="total" header="Total" headerStyle={{ backgroundColor: 'transparent' }}></Column>
                 </DataTable>
                 </div>
                 <div style={{width:'40%',padding:'10px'}}>
                 <h4>Best Selling</h4>
-                <div style={{marginTop:'4vh'}}>
+                <div style={{marginTop:'5vh'}}>
                 {bestSelling && bestSelling.map((prod) => (
                     <div key={prod.id} style={{display:'flex',height:'45px'}}>
                         <div style={{width:'30%'}}>{prod.name}</div>

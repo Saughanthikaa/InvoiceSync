@@ -62,13 +62,15 @@ function Invoice() {
     return (
         
         <div className="invoiceContainer">
-             <div style={{width:'210mm',background:'white'}}>
-                <button onClick={downloadInvoiceAsPdf}>Download as PDF</button>
+             <div className='download-btn'>
+                <button onClick={downloadInvoiceAsPdf} className='download'>Download</button>
+                <button onClick={downloadInvoiceAsPdf} className='download'>Back</button>
+
             </div>
             <div className="invoiceContent" ref={invoiceContentRef}>
            
                 <div className="title">
-                    <span>SHRI MARIAMMAN TEXTILES</span>
+                    <span>ABC TEXTILES</span>
                 </div>
                 <hr />
                 <div className="invoiceDiv">
@@ -76,19 +78,18 @@ function Invoice() {
                         Tax Invoice No : 27<br />
                         Date : March 5 , 2024<br />
                         Transport : VRL Parcel service ,<br />
-                        Gobichettipalayam
+                        Coimbatore
                     </span>
                 </div>
                 <hr />
                 <div className="addressDiv">
                     <div>
                         <b>From</b>
-                        <p>Shri MAriamman textiles<br />
-                            No 38, Karattupalayam Road,<br />
-                            Kasipalayam(po),<br />
-                            GobiChettipalayam(TK),<br />
-                            Erode District,<br />
-                            TamilNadu state - 638454.
+                        <p>ABC textiles<br />
+                            No 38, abc Road,<br />
+                            Coimbatore(po),<br />
+                            Coimbatore District,<br />
+                            TamilNadu state - 641014.
                         </p>
                     </div>
                     <div>
@@ -99,7 +100,7 @@ function Invoice() {
                             {rowData.state} - {rowData.pincode}<br></br>
                             phone: {rowData.phone}<br></br>
                             email : {rowData.email}<br></br>
-                            GSTIN: 8957694856793847
+                            
                         </p>
                     </div>
                 </div>
@@ -180,7 +181,7 @@ function Invoice() {
                                 <td colSpan={3}>
                                     <div style={{ display: "flex", justifyContent: "flex-end" }}>
                                         <div>
-                                            <p>From Shri Mariamman textiles</p>
+                                            <p>From ABC textiles</p>
                                             <br />
                                             <br />
                                             <br />
@@ -193,6 +194,8 @@ function Invoice() {
                     </table>
                 </div>
             </div>
+            <br></br>
+            
         </div>
     );
 }

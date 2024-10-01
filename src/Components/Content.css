@@ -18,37 +18,41 @@
 }
 
 .mainDiv{
-    height: 93vh;
+    height: 100vh;
     width: 100vw;
     background-color: grey;
     display: flex;
 }
 .dashboardDiv{
-    width: 20vw;
+    width: 15vw;
     background-color: white;
-    border: 1px solid white;
-    border-radius: 8px;
-    margin: 1vh;
+    /* border: 1px solid white; */
+    /* border-radius: 8px; */
+    /* margin: 1vh; */
+    background: rgb(48, 32, 66);
+    /* border-right: 2px solid #e6e6e6; */
     display: flex;
     flex-direction: column;
+    padding-left: 1px;
 }
 .active{
-    border: 2px solid #7210728c;
-    border-radius: 14px;
-    padding: 10px;
-    color: #721072;
-    font-size: 1.2vw;
+    border: 1px solid rgb(224, 111, 70);
+    border-radius: 20px;
+    padding: 8px 5px 8px 5px;
+    background: linear-gradient(to right, rgb(225, 116, 87), rgb(218 168 73));
+    /* font-size: 1.2vw; */
 }
 
 .contentDiv{
-    width: 80vw;
+    width: 85vw;
     background-color: white;
     border: 1px solid white;
-    border-radius: 8px;
-    margin: 1vh;
+    /* border-radius: 8px; */
+    /* margin: 1vh; */
     padding: 2vh;
     position: relative;
     overflow: scroll;
+    background: linear-gradient(to bottom, rgb(201 182 235), rgb(252 239 255));
 }
 .popupDiv {
     position: fixed;
@@ -77,6 +81,10 @@
     align-items:center;
 }
 .btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6vh;
     height: 5vh;
     border: 1px solid #721072;
     border-radius: 8px;

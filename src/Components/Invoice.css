@@ -45,3 +45,18 @@
 .invoiceTable tbody tr:nth-child(odd) {
     background-color: rgb(191, 191, 191);
 }
+
+.download-btn{
+    width:210mm;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.download{
+    width: 20vh;
+    height: 4vh;
+    margin: 4px;
+    
+}

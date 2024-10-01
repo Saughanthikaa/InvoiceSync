@@ -29,9 +29,8 @@ function Content() {
     ];
     return (
         <div className="container">
-            <div className="headerDiv">
+            {/* <div className="headerDiv">
                 <div><b>InvoiceSync</b></div>
-                {/* <div><img src={img} style={{ width: '43px', height: '43px' }} /></div> */}
                 <div style={{ position: 'relative',display:'flex',alignItems:'center',gap:'10px' }}>
                     {storedUsername}
                     <img 
@@ -42,13 +41,14 @@ function Content() {
                     />
                     <Menu model={items} popup ref={menuRef} />
                 </div>
-            </div>
+            </div> */}
             <div className="mainDiv">
                 <div className="dashboardDiv">
-                    <div style={{ marginTop: '3vh', padding: '3vh' }}><span style={{ cursor: 'pointer' }} onClick={() => setContent('Dashboard')}><div className={content==='Dashboard'?'active':''}>Dashboard</div></span></div>
-                    <div style={{ marginTop: '3vh', padding: '3vh' }}><span style={{ cursor: 'pointer' }} onClick={() => setContent('Billing')}><div className={content==='Billing'?'active':''}>Billing</div></span></div>
-                    <div style={{ marginTop: '3vh', padding: '3vh' }}><span style={{ cursor: 'pointer' }} onClick={() => setContent('Payment')}><div className={content==='Payment'?'active':''}>Payments</div></span></div>
-                    <div style={{ marginTop: '3vh', padding: '3vh' }}><span style={{ cursor: 'pointer' }} onClick={() => setContent('Customers')}><div className={content==='Customers'?'active':''}>Customers</div></span></div>
+                    <div style={{ color:'white',padding: '3vh', borderBottom:'.5px solid white'}}><span style={{ cursor: 'pointer' }}><div>InvoiceSync</div></span></div>
+                    <div style={{ color:'white',marginTop: '1vh', padding: '3vh' }}><span style={{ cursor: 'pointer' }} onClick={() => setContent('Dashboard')}><div className={content==='Dashboard'?'active':''}>Dashboard</div></span></div>
+                    <div style={{ color:'white',padding: '3vh' }}><span style={{ cursor: 'pointer' }} onClick={() => setContent('Billing')}><div className={content==='Billing'?'active':''}>Billing</div></span></div>
+                    <div style={{ color:'white',padding: '3vh' }}><span style={{ cursor: 'pointer' }} onClick={() => setContent('Payment')}><div className={content==='Payment'?'active':''}>Payments</div></span></div>
+                    <div style={{ color:'white',padding: '3vh' }}><span style={{ cursor: 'pointer' }} onClick={() => setContent('Customers')}><div className={content==='Customers'?'active':''}>Customers</div></span></div>
                 </div>
                 <div className="contentDiv">
                     {content === 'Dashboard' ? (

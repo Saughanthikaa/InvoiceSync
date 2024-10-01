@@ -5,6 +5,29 @@
 .subDiv{
     display: flex;
     flex-direction: row;
-    margin-top: 4vh;
+    margin-top: 10vh;
     justify-content: space-between;
+}
+
+.p-datatable-tbody tr {
+    background-color: transparent !important; 
+}
+
+.p-datatable-tbody td {
+    background-color: transparent !important; 
+}
+
+.p-paginator-bottom {
+    background-color: transparent !important; 
+
+}
+
+.p-dropdown{
+    background-color: transparent !important; 
+
+}
+
+.p-datatable .p-datatable-thead > tr > th{
+    color: black;
+    border-bottom: 1px solid white;
 }

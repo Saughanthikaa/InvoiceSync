@@ -52,7 +52,7 @@
     padding: 2vh;
     position: relative;
     overflow: scroll;
-    background: linear-gradient(to bottom, rgb(201 182 235), rgb(252 239 255));
+    /* background: linear-gradient(to bottom, rgb(201 182 235), rgb(252 239 255)); */
 }
 .popupDiv {
     position: fixed;
